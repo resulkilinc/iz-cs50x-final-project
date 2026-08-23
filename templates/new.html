@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}İZ — Yeni{% endblock %}
+{% block main %}
+<section class="page-head">
+    <h1>Yeni iz</h1>
+    <p class="lede">Bugünü bir başlık, bir ruh hali ve birkaç cümleyle kaydet.</p>
+</section>
+
+<form class="form" method="post" action="{{ url_for('new_entry') }}">
+    <label for="title">Başlık</label>
+    <input id="title" name="title" type="text" required maxlength="120" value="{{ form.get('title', '') }}">
+
+    <label for="mood">Ruh hali</label>
+    <div class="mood-row">
+        {% for id, meta in moods.items() %}
+            <label class="mood-choice">
+                <input type="radio" name="mood" value="{{ id }}" required
+                    {% if form.get('mood')|string == id|string or (not form.get('mood') and id == 3) %}checked{% endif %}>
+                <span>{{ meta.emoji }} {{ meta.label }}</span>
+            </label>
+        {% endfor %}
+    </div>
+
+    <label for="body">Metin</label>
+    <textarea id="body" name="body" rows="8" required>{{ form.get('body', '') }}</textarea>
+
+    <button class="btn primary" type="submit">Kaydet</button>
+</form>
+{% endblock %}

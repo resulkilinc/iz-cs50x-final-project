@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}İZ — {{ entry.title }}{% endblock %}
+{% block main %}
+<article class="entry">
+    <div class="card-top">
+        <span class="mood-pill">{{ entry.mood_meta.emoji }} {{ entry.mood_meta.label }}</span>
+        <time>{{ entry.created_at }}</time>
+    </div>
+    <h1>{{ entry.title }}</h1>
+    <div class="entry-body">{{ entry.body }}</div>
+
+    <div class="entry-actions">
+        <a class="btn soft" href="{{ url_for('index') }}">Geri</a>
+        <form method="post" action="{{ url_for('delete_entry', entry_id=entry.id) }}" onsubmit="return confirm('Bu iz silinsin mi?');">
+            <button class="btn danger" type="submit">Sil</button>
+        </form>
+    </div>
+</article>
+{% endblock %}

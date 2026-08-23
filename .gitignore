@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.DS_Store
+iz.db
+*.db
+.env
+.venv/
+venv/
+SETUP_YAZ.sh

@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}İZ — İstatistik{% endblock %}
+{% block main %}
+<section class="page-head">
+    <h1>İstatistik</h1>
+    <p class="lede">Toplam {{ total }} iz. Ruh hallerinin dağılımı:</p>
+</section>
+
+{% if total == 0 %}
+    <div class="empty"><p>Henüz veri yok.</p></div>
+{% else %}
+    <div class="stats">
+        {% for row in chart %}
+            <div class="stat-row">
+                <div class="stat-label">{{ row.meta.emoji }} {{ row.meta.label }}</div>
+                <div class="bar-track">
+                    <div class="bar-fill" style="width: {{ row.pct }}%"></div>
+                </div>
+                <div class="stat-count">{{ row.count }} · %{{ row.pct }}</div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block title %}İZ — Defter{% endblock %}
+{% block main %}
+<section class="hero">
+    <p class="eyebrow">kişisel günlük</p>
+    <h1>Günlerinin izini bırak.</h1>
+    <p class="lede">Kısa notlar, bir ruh hali, arama — sade bir defter.</p>
+    <a class="btn primary" href="{{ url_for('new_entry') }}">Yeni iz yaz</a>
+</section>
+
+<form class="filters" method="get" action="{{ url_for('index') }}">
+    <input type="search" name="q" value="{{ q }}" placeholder="Başlık veya metinde ara…">
+    <select name="mood">
+        <option value="">Tüm ruh halleri</option>
+        {% for id, meta in moods.items() %}
+            <option value="{{ id }}" {% if selected_mood == id|string %}selected{% endif %}>
+                {{ meta.emoji }} {{ meta.label }}
+            </option>
+        {% endfor %}
+    </select>
+    <button class="btn soft" type="submit">Filtrele</button>
+</form>
+
+{% if entries %}
+    <div class="grid">
+        {% for entry in entries %}
+            <a class="card" href="{{ url_for('show_entry', entry_id=entry.id) }}">
+                <div class="card-top">
+                    <span class="mood-pill">{{ entry.mood_meta.emoji }} {{ entry.mood_meta.label }}</span>
+                    <time>{{ entry.created_at }}</time>
+                </div>
+                <h2>{{ entry.title }}</h2>
+                <p>{{ entry.body[:140] }}{% if entry.body|length > 140 %}…{% endif %}</p>
+            </a>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="empty">
+        <p>Henüz iz yok. İlk satırını yaz.</p>
+    </div>
+{% endif %}
+{% endblock %}
