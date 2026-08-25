@@ -7,6 +7,12 @@ Harvard CS50x 2026 Final Project by [Resul Kılınç](https://github.com/resulki
 
 Stack: Flask · SQLite · Jinja · custom CSS
 
+[![CS50x](https://img.shields.io/badge/CS50x-2026%20Final%20Project-A51C30)](https://cs50.harvard.edu/x/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+> Public portfolio project. CS50 problem-set solutions are **not** included in this repository (academic honesty).
+
+
 ## Overview
 
 **İZ** is my CS50x 2026 final project: a calm personal journal web application. The name means “trace” in Turkish. The idea is simple but useful: leave short traces of your days — a title, a short text, and a mood — then find them later with search and filters, or glance at mood statistics over time.
